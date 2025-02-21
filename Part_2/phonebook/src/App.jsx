@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import phoneServices from './services/phonbook'
 
 const Filter = ({onChange})=>{
   return(
@@ -26,32 +28,44 @@ const PersonForm= ({OnSubmit,OnChangeName,OnChangeNbr,newName,newNbr})=>{
   )
 }
 
-const RenderPersons = ({persons,filtredPer,show})=>{
+const RenderPersons = ({persons,filtredPer,show, onDelete})=>{
   return(
     <>
       {show
-      ? persons.map((person) => <SinglePer key={person.id} person={person} /> )
-      : filtredPer.map((person) => <SinglePer key={person.id} person={person} />)
+      ? persons.map((person) => <SinglePer key={person.id} person={person} onDelete={onDelete} /> )
+      : filtredPer.map((person) => <SinglePer key={person.id} person={person} onDelete={onDelete}/>)
       }
     </>
   )
 
 }
 
-const SinglePer = ({person}) => <div>{person.name} {person.number}</div>
+const SinglePer = ({person, onDelete}) =>{
+  return(
+    <div>{person.name} {person.number} 
+      <button onClick={()=>onDelete(person)}>delete</button>
+    </div>
 
+
+  )
+}
+              
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNbr, setNewNbr] = useState('')
   const [serPer, setSerPer] = useState('')
   const [filtredPer,setfiltredPer] = useState([])
   const [showAll,setShowAll] = useState(true)
+
+  useEffect(()=>{
+
+    phoneServices
+    .getAll()
+    .then(Per=>{
+      setPersons(Per)
+    })}
+  ,[])
 
   const changeName = (event)=>{
 
@@ -62,28 +76,50 @@ const App = () => {
   const submitPerson = (event)=>{
     const intialvalue = 0
     event.preventDefault()
-    let nbr = persons.reduce(
-      (redu,person)=>{
-        if(newName === person.name){
-          redu+=1
-        }
-        return redu
-      },intialvalue,
-    )
+    const filtredPer = persons.filter(person => person===newName)
     
-    if(nbr === 0){
-    const newPer = {name : newName,
-      number : newNbr,
-      id : String(persons.length + 1)
-    }
-    setPersons(persons.concat(newPer))
-    setNewName('')
-    setNewNbr('')
+    
+    if(filterPer.length !== 0){
+    //alert(`${newName} is already to phonebook`)
+      if(window.confirm(`${newName} is already to phonebook, replace the old number witha new one`)){
+        const per = persons.find(n => n.name === newName)
+        const changedNbr = { ...per,number: newNbr}
+        
+        phoneServices
+        .update(changedNbr.id, changedNbr)
+        .then(pers => {
+          setPersons(persons.map(per => per.name === newName ? pers : per))
+        })
+      }
+
     }else{
-      alert(`${newName} is already to phonebook`)
+      const newPer = {name : newName,
+        number : newNbr,
+        id : String(persons.length + 1)
+      }
+
+    phoneServices
+    .create(newPer)
+    .then(newObj=>{
+      setPersons(persons.concat(newObj))
+      setNewName('')
+      setNewNbr('')
+    })
+      
     }
 
+  }
 
+  const onDelete = (person)=>{
+    if(window.confirm(`do you want to delete ${person.name}`)){
+      phoneServices
+      .del(person.id)
+      .then(resposne=>{
+        console.log(resposne)
+        setPersons(persons.filter(item=>item.id !== person.id))
+      })
+      
+    }
   }
 
   const changeNbr = (event)=>{
@@ -117,10 +153,10 @@ const App = () => {
       <h2>add a new</h2>
       <PersonForm OnSubmit={submitPerson} 
       OnChangeName={changeName} OnChangeNbr={changeNbr} newName={newName}
-      newNbr={newNbr} />
+      newNbr={newNbr}  />
       
       <h2>Numbers</h2>
-      <RenderPersons  persons={persons} filtredPer={filtredPer} show={showAll} />
+      <RenderPersons  persons={persons} filtredPer={filtredPer} show={showAll} onDelete={onDelete} />
       
     </div>
   )

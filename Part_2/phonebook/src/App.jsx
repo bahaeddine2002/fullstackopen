@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import phoneServices from './services/phonbook'
+import './index.css'
 
 const Filter = ({onChange})=>{
   return(
@@ -8,6 +9,18 @@ const Filter = ({onChange})=>{
   <div>filter shown with<input type='search' onChange={onChange}/></div>
   )
 
+}
+
+const MsgUpdat = ({addMsg})=>{
+  
+  if(addMsg !== null){
+    
+    
+      return(<div className='added'>{addMsg}</div>)
+    
+  }
+
+  
 }
 
 const PersonForm= ({OnSubmit,OnChangeName,OnChangeNbr,newName,newNbr})=>{
@@ -57,9 +70,10 @@ const App = () => {
   const [serPer, setSerPer] = useState('')
   const [filtredPer,setfiltredPer] = useState([])
   const [showAll,setShowAll] = useState(true)
-
+  const [addMsg,setAddmsg] = useState(null)
+  //const [addMsg]
+  
   useEffect(()=>{
-
     phoneServices
     .getAll()
     .then(Per=>{
@@ -74,13 +88,14 @@ const App = () => {
 
 
   const submitPerson = (event)=>{
-    const intialvalue = 0
+
     event.preventDefault()
-    const filtredPer = persons.filter(person => person===newName)
+    
+    const filtredPer = persons.filter(person => person.name === newName)
     
     
-    if(filterPer.length !== 0){
-    //alert(`${newName} is already to phonebook`)
+    if( filtredPer.length !== 0){
+    
       if(window.confirm(`${newName} is already to phonebook, replace the old number witha new one`)){
         const per = persons.find(n => n.name === newName)
         const changedNbr = { ...per,number: newNbr}
@@ -89,13 +104,15 @@ const App = () => {
         .update(changedNbr.id, changedNbr)
         .then(pers => {
           setPersons(persons.map(per => per.name === newName ? pers : per))
+
         })
+        setAddmsg(`changed the number of ${newName}`)
       }
 
     }else{
+      
       const newPer = {name : newName,
         number : newNbr,
-        id : String(persons.length + 1)
       }
 
     phoneServices
@@ -104,9 +121,17 @@ const App = () => {
       setPersons(persons.concat(newObj))
       setNewName('')
       setNewNbr('')
+      setAddmsg(`Added ${newName} `)
+      
+      
+
     })
       
     }
+    
+    setTimeout(() => {
+      setAddmsg(null)
+    }, 5000)
 
   }
 
@@ -148,8 +173,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+
       <Filter onChange={filterPer}/>  
-      
+      <MsgUpdat addMsg={addMsg} />
       <h2>add a new</h2>
       <PersonForm OnSubmit={submitPerson} 
       OnChangeName={changeName} OnChangeNbr={changeNbr} newName={newName}

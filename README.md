@@ -1,35 +1,36 @@
 # 🌐 Full Stack Open 2025 — Solutions by Baha Eddine Azouz
 
-![Certificate](certificate-fullstack.png)
+![Certificate](./certificate-fullstack.png)
 
 ## 📜 About the Course
 
-This repository contains my complete solutions for the [**Full Stack Open**](https://fullstackopen.com/en/) course by the University of Helsinki.  
-The course covers **modern web development** using **React, Redux, Node.js, MongoDB, GraphQL, and TypeScript**.
+This repository contains my full solutions for the **[Full Stack Open](https://fullstackopen.com/en/)** course offered by the **University of Helsinki**.  
+It covers **modern web development** using **React, Redux, Node.js, MongoDB, GraphQL, and TypeScript**.
 
 ---
 
-## 🧩 Course Parts
+## 🧩 Course Parts Overview
 
-| Part | Topic                                        | GitHub Link                        | Hours | Comments              |
-| ---- | -------------------------------------------- | ---------------------------------- | ----- | --------------------- |
-| 0    | Fundamentals of Web Apps                     | [🔗 Part 0](./part0)               | 4h    | Intro to HTTP & SPA   |
-| 1    | Introduction to React                        | [🔗 Part 1](./Part_1)              | 10h   | Components & State    |
-| 2    | Communicating with Server                    | [🔗 Part 2](./fullstackopen)       | 20h   | REST APIs & Axios     |
-| 3    | Programming a Server with NodeJS & Express   | [🔗 Part 3](./phonebook_partie3)   | 24h   | Backend & Deployment  |
-| 4    | Testing Express Servers, User Administration | [🔗 Part 4](./Fullstack_Part4)     | 25h   | Tests, Token Auth     |
-| 5    | Testing React Apps                           | [🔗 Part 5](./fullStackOpen-Part5) | 25h   | React Testing Library |
-| 6    | State Management with Redux                  | [🔗 Part 6](./fullStackOpen-Part6) | 20h   | Redux Toolkit         |
-| 7–13 | Advanced Topics                              | Coming soon 🚀                     | —     | —                     |
+| Part | Title                                         | Folder                                               | Topics Covered                           |
+| ---- | --------------------------------------------- | ---------------------------------------------------- | ---------------------------------------- |
+| 0    | Fundamentals of Web Apps                      | [part0](./part0)                                     | HTML, CSS, JS, HTTP, SPA basics          |
+| 1    | Introduction to React                         | [Part1](./Part1)                                     | Components, Props, State, Event Handling |
+| 2    | Communicating with Server                     | [Part2](./Part2)                                     | REST APIs, Axios, JSON server            |
+| 3    | Programming a Server with Node.js and Express | [part3/phonebook_Backend](./part3/phonebook_Backend) | Express, Middleware, Deployment          |
+| 4    | Testing Express Servers, User Administration  | [part4](./part4)                                     | Jest, Supertest, User Authentication     |
+| 5    | Testing React Apps                            | [part5](./part5)                                     | React Testing Library, E2E Testing       |
+| 6    | Advanced State Management                     | [part6](./part6)                                     | Redux Toolkit, Async Actions             |
+| 7    | React Router, Custom Hooks, and More          | [part7](./part7)                                     | React Router, Hooks, Deployment          |
 
 ---
 
 ## 🏆 Certificate
 
-I successfully completed the course and earned the **Full Stack Open Certificate**.  
-You can view the verified version here:  
-👉 [**View My Certificate**](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/eff20c80e93a684252ae6aa4ac0f7423)  
-_(Replace the link with your real certificate URL!)_
+I successfully completed the course and earned the **Full Stack Open Certificate**! 🎓  
+You can view the official certificate here:  
+👉 [**View Certificate**](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/eff20c80e93a684252ae6aa4ac0f7423)
+
+_(Replace the link above with your real certificate URL!)_
 
 ---
 
@@ -37,19 +38,19 @@ _(Replace the link with your real certificate URL!)_
 
 - **Frontend:** React, Redux, TypeScript
 - **Backend:** Node.js, Express
-- **Database:** MongoDB, Mongoose
+- **Database:** MongoDB (Mongoose)
 - **Testing:** Jest, Cypress
 - **Deployment:** Render / Vercel / Fly.io
 
 ---
 
-## 📫 Contact
+## 👨‍💻 Author
 
 **Baha Eddine Azouz**  
 📍 Tunis, Tunisia  
 📧 [bahaazouz88@gmail.com](mailto:bahaazouz88@gmail.com)  
-🌐 [LinkedIn](https://www.linkedin.com/in/baha-azouz-11a862364) • [GitHub](https://github.com/bahaeddine2002)
+🔗 [LinkedIn](https://www.linkedin.com/in/baha-azouz-11a862364) • [GitHub](https://github.com/bahaeddine2002)
 
 ---
 
-⭐ _If you found this repository helpful, don’t forget to give it a star!_
+⭐ _If you like this repository, consider giving it a star to support my work!_

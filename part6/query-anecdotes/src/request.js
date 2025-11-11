@@ -1,0 +1,18 @@
+import axios from "axios";
+
+const baseUrl = 'http://localhost:3001/anecdotes'
+
+export const getAll = async () => {
+  const response = await axios.get(baseUrl)
+  return response.data
+} 
+
+export const createAnecdotes = async (obj) => {
+  const response = await axios.post(baseUrl, obj)
+  return response.data
+} 
+
+export const updateAnecdotes = async (obj) => {
+  const response = await axios.put(`${baseUrl}/${obj.id}`,obj)
+  return response.data
+}

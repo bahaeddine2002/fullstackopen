@@ -1,0 +1,5 @@
+{
+  "compilerOptions": {
+    "checkJs": false  // Disables TS-style checks in JS files
+  }
+}

@@ -30,7 +30,7 @@ I successfully completed the course and earned the **Full Stack Open Certificate
 You can view the official certificate here:  
 👉 [**View Certificate**](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/eff20c80e93a684252ae6aa4ac0f7423)
 
-_(Replace the link above with your real certificate URL!)_
+
 
 ---
 
